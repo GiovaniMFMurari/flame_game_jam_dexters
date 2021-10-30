@@ -15,7 +15,7 @@ class Background extends Component with HasGameRef<MyGame> {
     await super.onLoad();
 
     add(_player = Player());
-    _image = await Flame.images.load('cyberpunk-street.png');
+    _image = await Flame.images.load('background.png');
   }
 
   @override
@@ -23,7 +23,7 @@ class Background extends Component with HasGameRef<MyGame> {
     Paint paint = Paint();
     canvas.drawImageRect(
         _image,
-        Rect.fromLTWH(0, 0, 350, _image.height.toDouble()),
+        Rect.fromLTWH(0, 0, _image.width.toDouble(), _image.height.toDouble()),
         Rect.fromLTWH(0, 0, gameRef.size.x, gameRef.size.y),
         paint);
     super.render(canvas);
