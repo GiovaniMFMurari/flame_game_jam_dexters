@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_game_jam_dexters/components/background.dart';
+import 'package:flame_game_jam_dexters/components/match.dart';
 import 'package:flame_game_jam_dexters/components/trick.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,5 +21,6 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
     await super.onLoad();
     add(_background);
     add(Trick.empty());
+    add(Match.empty());
   }
 }
