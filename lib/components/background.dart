@@ -1,17 +1,20 @@
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/image_composition.dart';
+import 'package:flame_game_jam_dexters/components/player.dart';
 import 'package:flutter/painting.dart';
 
 import '../main.dart';
 
 class Background extends Component with HasGameRef<MyGame> {
   late Image _image;
+  late Player _player;
 
   @override
   Future<void>? onLoad() async {
     await super.onLoad();
 
+    add(_player = Player());
     _image = await Flame.images.load('cyberpunk-street.png');
   }
 
