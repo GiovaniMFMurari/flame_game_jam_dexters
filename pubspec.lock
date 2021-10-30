@@ -57,6 +57,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  flame:
+    dependency: "direct main"
+    description:
+      path: "packages/flame"
+      ref: "flame-1.0.0-releasecandidate.16"
+      resolved-ref: f2cbcd38649fa669f9be6f9cfe0b842aa4cf8f33
+      url: "https://github.com/flame-engine/flame.git"
+    source: git
+    version: "1.0.0-releasecandidate.16"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -95,6 +104,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  ordered_set:
+    dependency: transitive
+    description:
+      name: ordered_set
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   path:
     dependency: transitive
     description:
@@ -165,3 +181,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
+  flutter: ">=2.5.0"

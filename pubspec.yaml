@@ -29,6 +29,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flame:
+    git:
+      url: https://github.com/flame-engine/flame.git
+      ref: flame-1.0.0-releasecandidate.16
+      path: packages/flame/
 
 
   # The following adds the Cupertino Icons font to your application.
