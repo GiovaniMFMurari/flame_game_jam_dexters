@@ -29,3 +29,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## How to play
+This is a simple arcade game. Your objective is to collect as much Treats as you can before yout time limit reaches 0!  
+Amidst those treats are some Tricks disguised as happy pumpkins, and you guessed it, those should be avoided!
+
+Your controls are <kbd>A</kbd> and <kbd>D</kbd> to move your character left and right.
+
+Treats are worth 1pt each, while Tricks are -3pt. Be prepared! You'll have 45 seconds to catch 'em all!
