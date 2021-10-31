@@ -8,17 +8,27 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Image(image: AssetImage('assets/images/logo_flame.png')),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 50.0),
               child: Text(
-                'Candyfall',
+                'Treat Time!',
                 style: TextStyle(
                   fontSize: 50.0,
-                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                   shadows: [
                     Shadow(
                       blurRadius: 20.0,
