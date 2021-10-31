@@ -19,12 +19,19 @@ class Match extends Component {
 
   void finish() {
     status = MatchStatus.finished;
+    seconds = 60;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    seconds -= dt;
+    if (seconds <= 0) {
+      finish();
+    }
+
+    if (status == MatchStatus.started) {
+      seconds -= dt;
+    }
   }
 }
