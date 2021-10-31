@@ -22,16 +22,12 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   @override
   void onGameResize(Vector2 gameSize) {
     double boxWidth = (gameSize.x / 4);
+    x = gameSize.x / 2 - width / 2;
     box = Rect.fromLTWH(
         ((gameSize.x / 2) - (boxWidth / 2)), 0, boxWidth, gameSize.y);
 
-    print(player.x);
-    print(player.y);
     player.x = width / 2;
-    player.y = gameSize.y - player.height * 2;
-    print(
-        '=============================================================================================');
-    print(gameSize);
+    player.y = gameSize.y - height / 5;
 
     super.onGameResize(gameSize);
   }

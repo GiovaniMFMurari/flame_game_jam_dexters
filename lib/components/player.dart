@@ -4,9 +4,9 @@ import 'package:flame_game_jam_dexters/main.dart';
 class Player extends SpriteAnimationComponent with HasGameRef<MyGame> {
   static final dimensions = Vector2(32, 32);
 
-  @override
-  void onGameResize(Vector2 gameSize) {
-    super.onGameResize(gameSize);
+  Player() {
+    height = 128;
+    width = 128;
   }
 
   @override
@@ -14,9 +14,6 @@ class Player extends SpriteAnimationComponent with HasGameRef<MyGame> {
     await super.onLoad();
 
     anchor = Anchor.center;
-
-    width = 128;
-    height = 128;
 
     animation = await gameRef.loadSpriteAnimation(
       'ghost.png',
