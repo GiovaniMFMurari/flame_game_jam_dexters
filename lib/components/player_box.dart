@@ -25,7 +25,6 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
     this.y = y;
     this.width = width;
     this.height = height;
-    stageRows = stage.readStage();
   }
 
   @override
@@ -39,6 +38,8 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
     player.y = gameSize.y - height / 5;
 
     Stage.distanceBetweenItems = width / 3 - width / 10;
+    stage.initialX = width / 4;
+    stageRows = stage.readStage();
 
     super.onGameResize(gameSize);
   }

@@ -27,6 +27,9 @@ class Item extends SpriteComponent with HasGameRef<MyGame> {
   Future<void> onLoad() async {
     await super.onLoad();
 
+    final gameHeight = gameRef.size.y;
+    endY = gameHeight - gameHeight / 6;
+
     x = initialPosition.x;
     y = initialPosition.y;
 
@@ -34,6 +37,12 @@ class Item extends SpriteComponent with HasGameRef<MyGame> {
     height = 32;
 
     sprite = await gameRef.loadSprite(spriteImg);
+  }
+
+  @override
+  void onGameResize(Vector2 gameSize) {
+    endY = gameSize.y - gameSize.y / 6;
+    super.onGameResize(gameSize);
   }
 
   void teste() {
