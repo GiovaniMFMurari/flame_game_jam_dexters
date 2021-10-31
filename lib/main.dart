@@ -60,7 +60,7 @@ class MyGame extends FlameGame
     match.start();
     counter.count = match.seconds;
     add(counter);
-    FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
+    FlameAudio.bgm.play('bgm.mp3', volume: 0.5);
   }
 
   drawGameOver() {
