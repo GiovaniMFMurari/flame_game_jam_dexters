@@ -1,8 +1,9 @@
 import 'package:flame/components.dart';
+import 'package:flame/geometry.dart';
 
 import '../main.dart';
 
-class Item extends SpriteComponent with HasGameRef<MyGame> {
+class Item extends SpriteComponent with HasGameRef<MyGame>, Hitbox, Collidable {
   double gravity = 200.0;
   double endY = 500.0;
   double speedY = 0.0;
@@ -35,6 +36,9 @@ class Item extends SpriteComponent with HasGameRef<MyGame> {
 
     width = 32;
     height = 32;
+
+    addHitbox(HitboxRectangle());
+    collidableType = CollidableType.passive;
 
     sprite = await gameRef.loadSprite(spriteImg);
   }
