@@ -12,6 +12,7 @@ import 'package:flutter/widgets.dart';
 
 import 'components/counter.dart';
 import 'components/player_box.dart';
+import 'packages/flame_audio/flame_audio.dart';
 
 class MyGame extends FlameGame
     with
@@ -40,7 +41,7 @@ class MyGame extends FlameGame
   Future<void>? onLoad() async {
     await super.onLoad();
 
-    // FlameAudio.bgm.initialize();
+    FlameAudio.bgm.initialize();
     double boxWidth = (size.x / 4);
 
     match = Match.empty();
@@ -59,7 +60,7 @@ class MyGame extends FlameGame
     match.start();
     counter.count = match.seconds;
     add(counter);
-    // FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
+    FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
   }
 
   drawGameOver() {
