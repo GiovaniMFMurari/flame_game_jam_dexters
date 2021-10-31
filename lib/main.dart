@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_game_jam_dexters/components/background.dart';
@@ -6,7 +7,6 @@ import 'package:flame_game_jam_dexters/components/player.dart';
 import 'package:flame_game_jam_dexters/components/stage.dart';
 import 'package:flame_game_jam_dexters/components/start.dart';
 import 'package:flutter/material.dart';
-import 'package:flame_game_jam_dexters/packages/flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -23,15 +23,11 @@ class MyGame extends FlameGame
   late Match match;
   Counter counter = Counter(0, 10, 0);
   late PlayerBox playerBox1;
-  late PlayerBox playerBox2;
 
   Player player1 = Player.withCustomControls(
       leftKey: LogicalKeyboardKey.keyA, rightKey: LogicalKeyboardKey.keyD);
-  Player player2 = Player.withCustomControls(
-      leftKey: LogicalKeyboardKey.keyJ, rightKey: LogicalKeyboardKey.keyL);
 
   Stage stagePlayer1 = Stage(stage: 1);
-  Stage stagePlayer2 = Stage(stage: 1);
 
   @override
   void onGameResize(Vector2 canvasSize) {
@@ -50,14 +46,11 @@ class MyGame extends FlameGame
     match = Match.empty();
 
     playerBox1 =
-        PlayerBox(player1, stagePlayer1, match, 1.5, 0, boxWidth, size.y);
-    playerBox2 =
-        PlayerBox(player2, stagePlayer2, match, 3, 0, boxWidth, size.y);
+        PlayerBox(player1, stagePlayer1, match, 2, 0, boxWidth, size.y);
 
     add(background);
     add(match);
     add(playerBox1);
-    add(playerBox2);
 
     onGameStart();
   }
@@ -69,10 +62,32 @@ class MyGame extends FlameGame
     // FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
   }
 
+  drawGameOver() {
+    final TextPaint textPaint = TextPaint(
+      config: const TextPaintConfig(
+        fontSize: 48.0,
+        fontFamily: 'Shlop',
+        color: Color(0xfff56300),
+      ),
+    );
+
+    var gameOver = TextComponent('FINISHED',
+        textRenderer: textPaint, position: Vector2(size.x / 2, size.y / 4))
+      ..anchor = Anchor.topCenter;
+
+    var scoreText = TextComponent('SCORE: ${player1.score.toString()}',
+        textRenderer: textPaint,
+        position: Vector2(size.x / 2, (size.y / 4) + (size.y / 5)))
+      ..anchor = Anchor.topCenter;
+
+    add(gameOver);
+    add(scoreText);
+  }
+
   onGameFinish() {
     remove(counter);
     remove(playerBox1);
-    remove(playerBox2);
+    drawGameOver();
   }
 
   @override

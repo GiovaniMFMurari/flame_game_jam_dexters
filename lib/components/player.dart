@@ -46,8 +46,6 @@ class Player extends SpriteAnimationComponent
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     final isDown = event is RawKeyDownEvent;
 
-    print(keysPressed);
-
     if (isDown) {
       if (keysPressed.contains(leftKey)) {
         x = initialX - Stage.distanceBetweenItems;
@@ -72,7 +70,6 @@ class Player extends SpriteAnimationComponent
         score += other.score;
       }
 
-      print('Current score is: $score');
       other.shouldRemove = true;
     }
 
