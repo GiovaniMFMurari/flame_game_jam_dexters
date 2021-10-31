@@ -18,11 +18,14 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   bool shouldRender = false;
   Match match;
 
-  PlayerBox(this.player, this.stage, this.match, x, y, width, height) {
+  late double ratePositionX;
+  late double ratePositionY;
+
+  PlayerBox(this.player, this.stage, this.match, this.ratePositionX,
+      this.ratePositionY, width, height) {
     paint.color = color;
     paint.style = PaintingStyle.stroke;
-    this.x = x;
-    this.y = y;
+
     this.width = width;
     this.height = height;
   }
@@ -30,12 +33,12 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   @override
   void onGameResize(Vector2 gameSize) {
     double boxWidth = (gameSize.x / 4);
-    x = gameSize.x / 2 - width / 2;
-    box = Rect.fromLTWH(
-        ((gameSize.x / 2) - (boxWidth / 2)), 0, boxWidth, gameSize.y);
+    x = gameSize.x / ratePositionX - width / 2;
+    box = Rect.fromLTWH(((gameSize.x / ratePositionX) - (boxWidth / 2)), 0,
+        boxWidth, gameSize.y);
 
-    player.initialX = width / 2;
-    player.x = width / 2;
+    player.initialX = width / ratePositionX;
+    player.x = width / ratePositionX;
     player.y = gameSize.y - height / 5;
 
     Stage.distanceBetweenItems = width / 3 - width / 10;

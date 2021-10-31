@@ -7,6 +7,7 @@ import 'package:flame_game_jam_dexters/components/stage.dart';
 import 'package:flame_game_jam_dexters/components/start.dart';
 import 'package:flutter/material.dart';
 import 'package:flame_game_jam_dexters/packages/flame_audio/flame_audio.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'components/counter.dart';
@@ -21,9 +22,16 @@ class MyGame extends FlameGame
   late Background background = Background();
   late Match match;
   Counter counter = Counter(0);
-  late PlayerBox playerBox;
-  Player player = Player();
-  Stage stage = Stage(stage: 1);
+  late PlayerBox playerBox1;
+  late PlayerBox playerBox2;
+
+  Player player1 = Player.withCustomControls(
+      leftKey: LogicalKeyboardKey.keyA, rightKey: LogicalKeyboardKey.keyD);
+  Player player2 = Player.withCustomControls(
+      leftKey: LogicalKeyboardKey.keyJ, rightKey: LogicalKeyboardKey.keyL);
+
+  Stage stagePlayer1 = Stage(stage: 1);
+  Stage stagePlayer2 = Stage(stage: 1);
 
   @override
   Future<void>? onLoad() async {
@@ -33,11 +41,16 @@ class MyGame extends FlameGame
     double boxWidth = (size.x / 4);
 
     match = Match.empty();
-    playerBox = PlayerBox(player, stage, match, ((size.x / 2) - (boxWidth / 2)),
-        0, boxWidth, size.y);
+
+    playerBox1 =
+        PlayerBox(player1, stagePlayer1, match, 3, 0, boxWidth, size.y);
+    playerBox2 =
+        PlayerBox(player2, stagePlayer2, match, 1.5, 0, boxWidth, size.y);
+
     add(background);
     add(match);
-    add(playerBox);
+    add(playerBox1);
+    add(playerBox2);
 
     onGameStart();
   }
@@ -51,7 +64,8 @@ class MyGame extends FlameGame
 
   onGameFinish() {
     remove(counter);
-    remove(playerBox);
+    remove(playerBox1);
+    remove(playerBox2);
   }
 
   @override
