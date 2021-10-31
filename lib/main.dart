@@ -4,6 +4,8 @@ import 'package:flame_game_jam_dexters/components/background.dart';
 import 'package:flame_game_jam_dexters/components/match.dart';
 import 'package:flame_game_jam_dexters/components/player.dart';
 import 'package:flame_game_jam_dexters/components/stage.dart';
+import 'package:flame_game_jam_dexters/components/start.dart';
+import 'package:flutter/material.dart';
 import 'package:flame_game_jam_dexters/packages/flame_audio/flame_audio.dart';
 import 'package:flutter/widgets.dart';
 
@@ -31,6 +33,8 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
     add(background);
     add(match);
     add(playerBox);
+
+    onGameStart();
   }
 
   onGameStart() {
@@ -46,11 +50,6 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
   }
 
   @override
-  onTap() {
-    onGameStart();
-  }
-
-  @override
   void update(double dt) {
     if (match.status == MatchStatus.finished) onGameFinish();
     if (match.status == MatchStatus.started) counter.count = match.seconds;
@@ -60,9 +59,8 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
 }
 
 void main() {
-  runApp(
-    GameWidget(
-      game: MyGame(),
-    ),
-  );
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Start(),
+  ));
 }
