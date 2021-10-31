@@ -4,10 +4,11 @@ import 'package:flame/palette.dart';
 
 class Counter extends Component with HasGameRef {
   double count = 0;
-  final double _y = 10;
+  double x = 0;
+  double y = 0;
   late TextComponent textComponent;
 
-  Counter(this.count);
+  Counter(this.count, this.x, this.y);
 
   final TextPaint textPaint = TextPaint(
     config: TextPaintConfig(
@@ -20,7 +21,7 @@ class Counter extends Component with HasGameRef {
   @override
   Future<void> onLoad() async {
     textComponent = TextComponent(count.toString(),
-        textRenderer: textPaint, position: Vector2((gameRef.size.x / 2), _y))
+        textRenderer: textPaint, position: Vector2(x, y))
       ..anchor = Anchor.topCenter;
     add(textComponent);
     super.onLoad();
@@ -28,7 +29,7 @@ class Counter extends Component with HasGameRef {
 
   @override
   void update(double dt) {
-    textComponent.x = gameRef.size.x / 2;
+    textComponent.x = x;
     textComponent.text = count.toInt().toString();
     super.update(dt);
   }

@@ -21,7 +21,7 @@ class MyGame extends FlameGame
         HasKeyboardHandlerComponents {
   late Background background = Background();
   late Match match;
-  Counter counter = Counter(0);
+  Counter counter = Counter(0, 10, 0);
   late PlayerBox playerBox1;
   late PlayerBox playerBox2;
 
@@ -34,6 +34,13 @@ class MyGame extends FlameGame
   Stage stagePlayer2 = Stage(stage: 1);
 
   @override
+  void onGameResize(Vector2 canvasSize) {
+    counter.x = canvasSize.x / 2;
+
+    super.onGameResize(canvasSize);
+  }
+
+  @override
   Future<void>? onLoad() async {
     await super.onLoad();
 
@@ -43,9 +50,9 @@ class MyGame extends FlameGame
     match = Match.empty();
 
     playerBox1 =
-        PlayerBox(player1, stagePlayer1, match, 3, 0, boxWidth, size.y);
+        PlayerBox(player1, stagePlayer1, match, 1.5, 0, boxWidth, size.y);
     playerBox2 =
-        PlayerBox(player2, stagePlayer2, match, 1.5, 0, boxWidth, size.y);
+        PlayerBox(player2, stagePlayer2, match, 3, 0, boxWidth, size.y);
 
     add(background);
     add(match);

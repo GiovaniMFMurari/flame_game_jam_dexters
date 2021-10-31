@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import '../main.dart';
 import 'package:flame_game_jam_dexters/components/item.dart';
 
+import 'counter.dart';
+
 class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   Player player;
   late Rect box;
@@ -17,6 +19,7 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   double time = 0.0;
   bool shouldRender = false;
   Match match;
+  Counter score = Counter(0, 0, 0);
 
   late double ratePositionX;
   late double ratePositionY;
@@ -37,13 +40,16 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
     box = Rect.fromLTWH(((gameSize.x / ratePositionX) - (boxWidth / 2)), 0,
         boxWidth, gameSize.y);
 
-    player.initialX = width / ratePositionX;
-    player.x = width / ratePositionX;
+    player.initialX = width / 2;
+    player.x = width / 2;
     player.y = gameSize.y - height / 5;
 
     Stage.distanceBetweenItems = width / 3 - width / 10;
     stage.initialX = width / 4;
     stageRows = stage.readStage();
+
+    score.x = width / 2;
+    score.y = height - height / 10;
 
     super.onGameResize(gameSize);
   }
@@ -52,6 +58,7 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   Future<void>? onLoad() {
     box = Rect.fromLTWH(x, y, width, height);
     add(player);
+    add(score);
     return super.onLoad();
   }
 
@@ -79,6 +86,9 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
 
       shouldRender = false;
     }
+
+    score.count = player.score;
+
     super.update(dt);
   }
 }
