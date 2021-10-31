@@ -37,3 +37,6 @@ Amidst those treats are some Tricks disguised as happy pumpkins, and you guessed
 Your controls are <kbd>A</kbd> and <kbd>D</kbd> to move your character left and right.
 
 Treats are worth 1pt each, while Tricks are -3pt. Be prepared! You'll have 45 seconds to catch 'em all!
+
+## Jam details
+Our theme is Halloween and the chosen limitation is "Be ridiculously happy and colorful".
