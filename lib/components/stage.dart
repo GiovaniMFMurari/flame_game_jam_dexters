@@ -203,7 +203,7 @@ class Stage {
     ]
   };
   static double distanceBetweenItems = 100.0;
-  static double initialX = 50;
+  double initialX = 0;
   static const double spawnPositionY = 0.0;
 
   int stage;
