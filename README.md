@@ -1,5 +1,20 @@
 # flame_game_jam_dexters
 
+## Credits
+
+### Image assets
+- Flame Images: https://github.com/flame-engine/flame
+- Ghost: https://master-blazter.itch.io/ghostspritepack
+- Treats and Tricks: https://free-game-assets.itch.io/free-halloween-icons-pixel-art
+- Background: https://craftpix.net/freebies/free-pixel-art-street-2d-backgrounds/
+
+## Sound Assets
+- BGM: Original By Dexter's Teammate Icaro-G-Silva
+
+
+# Special Thanks
+Thanks to the whole Blue Fire and Flame team! You guys gave us a great opportunity to learn, meet incredible people and a amazing community, and contribute to the game development scenario.
+
 A new Flutter project.
 
 ## Getting Started

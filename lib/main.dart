@@ -67,5 +67,6 @@ void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Start(),
+    title: 'Treat Time! - powered by Flame Engine',
   ));
 }
