@@ -26,7 +26,7 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
   Future<void>? onLoad() async {
     await super.onLoad();
 
-//    FlameAudio.bgm.initialize();
+    FlameAudio.bgm.initialize();
     double boxWidth = (size.x / 4);
 
     playerBox =
@@ -42,7 +42,7 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
     match.start();
     counter.count = match.seconds;
     add(counter);
-    //  FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
+    FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
   }
 
   onGameFinish() {
