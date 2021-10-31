@@ -6,6 +6,8 @@ import 'package:flame_game_jam_dexters/components/player.dart';
 import 'dart:collection';
 import 'package:flame_game_jam_dexters/components/item.dart';
 import 'package:flame_game_jam_dexters/components/stage.dart';
+import 'package:flame_game_jam_dexters/components/start.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'components/counter.dart';
@@ -28,6 +30,8 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
     add(match);
     add(player);
     stageRows = Stage(stage: 1).readStage();
+
+    onGameStart();
   }
 
   onGameStart() {
@@ -38,11 +42,6 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
 
   onGameFinish() {
     remove(counter);
-  }
-
-  @override
-  onTap() {
-    onGameStart();
   }
 
   @override
@@ -71,9 +70,8 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
 }
 
 void main() {
-  runApp(
-    GameWidget(
-      game: MyGame(),
-    ),
-  );
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Start(),
+  ));
 }
