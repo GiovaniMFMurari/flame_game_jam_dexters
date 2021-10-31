@@ -12,7 +12,7 @@ class Item extends SpriteComponent with HasGameRef<MyGame>, Hitbox, Collidable {
   late String spriteImg;
 
   Item.treat(this.initialPosition) {
-    spriteImg = 'treat.png';
+    spriteImg = 'treat2.png';
     score = 1.0;
   }
 
