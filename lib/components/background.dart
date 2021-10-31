@@ -1,31 +1,45 @@
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/image_composition.dart';
-import 'package:flame_game_jam_dexters/components/player.dart';
-import 'package:flutter/painting.dart';
+import 'package:flame/layers.dart';
+import 'package:flame_game_jam_dexters/main.dart';
 
-import '../main.dart';
+class BackgroundLayer extends PreRenderedLayer {
+  Sprite sprite;
+  Vector2 size;
 
-class Background extends Component with HasGameRef<MyGame> {
-  late Image _image;
-  late Player _player;
+  BackgroundLayer(this.sprite, this.size);
 
   @override
-  Future<void>? onLoad() async {
-    await super.onLoad();
+  void drawLayer() {
+    sprite.render(canvas, position: Vector2(0, 0), size: size);
+  }
+}
 
-    add(_player = Player());
-    _image = await Flame.images.load('background.png');
+class Background extends Component with HasGameRef<MyGame> {
+  Vector2 _size = Vector2(0, 0);
+  late BackgroundLayer _backgroundLayer;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+  }
+
+  @override
+  Future<void> onGameResize(Vector2 gameSize) async {
+    var _image = await Flame.images.load('background.png');
+    Sprite sprite = Sprite(_image);
+    _size = gameRef.size;
+
+    _backgroundLayer = BackgroundLayer(sprite, _size);
+    _backgroundLayer.size = gameSize;
+    super.onGameResize(gameSize);
   }
 
   @override
   void render(Canvas canvas) {
-    Paint paint = Paint();
-    canvas.drawImageRect(
-        _image,
-        Rect.fromLTWH(0, 0, _image.width.toDouble(), _image.height.toDouble()),
-        Rect.fromLTWH(0, 0, gameRef.size.x, gameRef.size.y),
-        paint);
+    _backgroundLayer.render(canvas);
+
     super.render(canvas);
   }
 }

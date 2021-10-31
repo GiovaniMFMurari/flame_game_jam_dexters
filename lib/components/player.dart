@@ -5,16 +5,23 @@ class Player extends SpriteAnimationComponent with HasGameRef<MyGame> {
   static final dimensions = Vector2(32, 32);
 
   @override
+  void onGameResize(Vector2 gameSize) {
+    y = gameSize.y - height / 2;
+    x = gameSize.x / 2;
+    super.onGameResize(gameSize);
+  }
+
+  @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    size = dimensions;
-    y = 600;
-    x = 400;
+    anchor = Anchor.center;
 
     width = 128;
     height = 128;
 
+    y = gameRef.size.y - height / 2;
+    x = gameRef.size.x / 2;
     animation = await gameRef.loadSpriteAnimation(
       'ghost.png',
       SpriteAnimationData.sequenced(
