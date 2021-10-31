@@ -202,7 +202,8 @@ class Stage {
       ';;'
     ]
   };
-  static const double distanceBetweenItems = 100.0;
+  static double distanceBetweenItems = 100.0;
+  static double initialX = 50;
   static const double spawnPositionY = 0.0;
 
   int stage;
@@ -227,12 +228,12 @@ class Stage {
     for (var i = 0; i < row.length; i++) {
       switch (row[i]) {
         case '1':
-          itemsRow.add(
-              Item.treat(Vector2(i * distanceBetweenItems, spawnPositionY)));
+          itemsRow.add(Item.treat(
+              Vector2((initialX + i * distanceBetweenItems), spawnPositionY)));
           break;
         case '2':
-          itemsRow.add(
-              Item.trick(Vector2(i * distanceBetweenItems, spawnPositionY)));
+          itemsRow.add(Item.trick(
+              Vector2((initialX + i * distanceBetweenItems), spawnPositionY)));
           break;
         default:
           itemsRow.add(null);
