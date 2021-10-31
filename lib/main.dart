@@ -10,11 +10,13 @@ import 'package:flame_game_jam_dexters/packages/flame_audio/flame_audio.dart';
 import 'package:flutter/widgets.dart';
 
 import 'components/counter.dart';
+import 'components/player_box.dart';
 
 class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
   late Background background = Background();
   late Match match;
   Counter counter = Counter(0);
+  late PlayerBox playerBox;
   Player player = Player();
   late Queue stageRows;
   double time = 0.0;
@@ -24,20 +26,23 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
   Future<void>? onLoad() async {
     await super.onLoad();
 
-    FlameAudio.bgm.initialize();
+//    FlameAudio.bgm.initialize();
+    double boxWidth = (size.x / 4);
 
+    playerBox =
+        PlayerBox(player, ((size.x / 2) - (boxWidth / 2)), 0, boxWidth, size.y);
     match = Match.empty();
     add(background);
     add(match);
-    add(player);
     stageRows = Stage(stage: 1).readStage();
+    add(playerBox);
   }
 
   onGameStart() {
     match.start();
     counter.count = match.seconds;
     add(counter);
-    FlameAudio.bgm.play('bgm.mp3', volume: 0.5);
+    //  FlameAudio.bgm.play('bgm.mp3', volume: 0.0);
   }
 
   onGameFinish() {

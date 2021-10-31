@@ -6,8 +6,6 @@ class Player extends SpriteAnimationComponent with HasGameRef<MyGame> {
 
   @override
   void onGameResize(Vector2 gameSize) {
-    y = gameSize.y - height / 2;
-    x = gameSize.x / 2;
     super.onGameResize(gameSize);
   }
 
@@ -20,8 +18,6 @@ class Player extends SpriteAnimationComponent with HasGameRef<MyGame> {
     width = 128;
     height = 128;
 
-    y = gameRef.size.y - height / 2;
-    x = gameRef.size.x / 2;
     animation = await gameRef.loadSpriteAnimation(
       'ghost.png',
       SpriteAnimationData.sequenced(
