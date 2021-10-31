@@ -19,15 +19,16 @@ class Counter extends Component with HasGameRef {
 
   @override
   Future<void> onLoad() async {
-    var size = gameRef.size;
     textComponent = TextComponent(count.toString(),
-        textRenderer: textPaint, position: Vector2((size.x / 2), _y));
+        textRenderer: textPaint, position: Vector2((gameRef.size.x / 2), _y))
+      ..anchor = Anchor.topCenter;
     add(textComponent);
     super.onLoad();
   }
 
   @override
   void update(double dt) {
+    textComponent.x = gameRef.size.x / 2;
     textComponent.text = count.toInt().toString();
     super.update(dt);
   }
