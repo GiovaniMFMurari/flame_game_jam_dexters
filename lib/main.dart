@@ -1,10 +1,11 @@
-import 'package:flame/components.dart';
-import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_game_jam_dexters/components/background.dart';
 import 'package:flame_game_jam_dexters/components/match.dart';
 import 'package:flame_game_jam_dexters/components/player.dart';
+import 'dart:collection';
+import 'package:flame_game_jam_dexters/components/item.dart';
+import 'package:flame_game_jam_dexters/components/stage.dart';
 import 'package:flutter/widgets.dart';
 
 import 'components/counter.dart';
@@ -14,6 +15,9 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
   late Match match;
   Counter counter = Counter(0);
   Player player = Player();
+  late Queue stageRows;
+  double time = 0.0;
+  bool shouldRender = false;
 
   @override
   Future<void>? onLoad() async {
@@ -23,6 +27,7 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
     add(background);
     add(match);
     add(player);
+    stageRows = Stage(stage: 1).readStage();
   }
 
   onGameStart() {
@@ -44,6 +49,23 @@ class MyGame extends FlameGame with DoubleTapDetector, TapDetector {
   void update(double dt) {
     if (match.status == MatchStatus.finished) onGameFinish();
     if (match.status == MatchStatus.started) counter.count = match.seconds;
+
+    time += dt;
+
+    if (time % 0.2 > 0.1) {
+      shouldRender = true;
+    }
+
+    if (stageRows.isNotEmpty && shouldRender && time % 0.2 < 0.1) {
+      List<Item?> currentRow = stageRows.removeFirst();
+      for (var item in currentRow) {
+        if (item != null) {
+          add(item);
+        }
+      }
+
+      shouldRender = false;
+    }
     super.update(dt);
   }
 }
