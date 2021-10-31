@@ -7,7 +7,7 @@ enum MatchStatus {
 }
 
 class Match extends Component {
-  double seconds = 60;
+  double seconds = 45;
   MatchStatus status = MatchStatus.initial;
 
   Match.empty();

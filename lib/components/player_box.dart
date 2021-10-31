@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import '../main.dart';
 import 'package:flame_game_jam_dexters/components/item.dart';
 
+import 'counter.dart';
+
 class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   Player player;
   late Rect box;
@@ -17,12 +19,16 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   double time = 0.0;
   bool shouldRender = false;
   Match match;
+  Counter score = Counter(0, 0, 0);
 
-  PlayerBox(this.player, this.stage, this.match, x, y, width, height) {
+  late double ratePositionX;
+  late double ratePositionY;
+
+  PlayerBox(this.player, this.stage, this.match, this.ratePositionX,
+      this.ratePositionY, width, height) {
     paint.color = color;
     paint.style = PaintingStyle.stroke;
-    this.x = x;
-    this.y = y;
+
     this.width = width;
     this.height = height;
   }
@@ -30,9 +36,9 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   @override
   void onGameResize(Vector2 gameSize) {
     double boxWidth = (gameSize.x / 4);
-    x = gameSize.x / 2 - width / 2;
-    box = Rect.fromLTWH(
-        ((gameSize.x / 2) - (boxWidth / 2)), 0, boxWidth, gameSize.y);
+    x = gameSize.x / ratePositionX - width / 2;
+    box = Rect.fromLTWH(((gameSize.x / ratePositionX) - (boxWidth / 2)), 0,
+        boxWidth, gameSize.y);
 
     player.initialX = width / 2;
     player.x = width / 2;
@@ -42,6 +48,9 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
     stage.initialX = width / 4;
     stageRows = stage.readStage();
 
+    score.x = width / 2;
+    score.y = height - height / 10;
+
     super.onGameResize(gameSize);
   }
 
@@ -49,6 +58,7 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
   Future<void>? onLoad() {
     box = Rect.fromLTWH(x, y, width, height);
     add(player);
+    add(score);
     return super.onLoad();
   }
 
@@ -76,6 +86,9 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
 
       shouldRender = false;
     }
+
+    score.count = player.score;
+
     super.update(dt);
   }
 }

@@ -12,13 +12,13 @@ class Item extends SpriteComponent with HasGameRef<MyGame>, Hitbox, Collidable {
   late String spriteImg;
 
   Item.treat(this.initialPosition) {
-    spriteImg = 'treat.png';
+    spriteImg = 'treat2.png';
     score = 1.0;
   }
 
   Item.trick(this.initialPosition) {
     spriteImg = 'trick.png';
-    score = -5.0;
+    score = -3.0;
   }
 
   Item(this.gravity, this.endY, this.initialPosition, this.score,

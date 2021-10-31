@@ -12,6 +12,16 @@ class Player extends SpriteAnimationComponent
   late double initialX;
   double score = 0.0;
 
+  LogicalKeyboardKey leftKey = LogicalKeyboardKey.keyA;
+  LogicalKeyboardKey rightKey = LogicalKeyboardKey.keyD;
+
+  Player.withCustomControls(
+      {required LogicalKeyboardKey leftKey,
+      required LogicalKeyboardKey rightKey}) {
+    this.leftKey = leftKey;
+    this.rightKey = rightKey;
+  }
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -33,15 +43,15 @@ class Player extends SpriteAnimationComponent
   }
 
   @override
-  bool onKeyEvent(RawKeyEvent key, keys) {
-    final isDown = key is RawKeyDownEvent;
+  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    final isDown = event is RawKeyDownEvent;
 
     if (isDown) {
-      if (key.logicalKey == LogicalKeyboardKey.keyA) {
+      if (keysPressed.contains(leftKey)) {
         x = initialX - Stage.distanceBetweenItems;
         return true;
       }
-      if (key.logicalKey == LogicalKeyboardKey.keyD) {
+      if (keysPressed.contains(rightKey)) {
         x = initialX + Stage.distanceBetweenItems;
         return true;
       }
@@ -60,7 +70,6 @@ class Player extends SpriteAnimationComponent
         score += other.score;
       }
 
-      print('Current score is: $score');
       other.shouldRemove = true;
     }
 
