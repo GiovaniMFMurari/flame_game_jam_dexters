@@ -1,7 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_game_jam_dexters/components/background.dart';
-import 'package:flame_game_jam_dexters/components/item.dart';
 import 'package:flame_game_jam_dexters/components/match.dart';
 import 'package:flame_game_jam_dexters/components/player.dart';
 import 'package:flame_game_jam_dexters/components/stage.dart';
@@ -14,7 +13,11 @@ import 'components/counter.dart';
 import 'components/player_box.dart';
 
 class MyGame extends FlameGame
-    with DoubleTapDetector, TapDetector, HasCollidables {
+    with
+        DoubleTapDetector,
+        TapDetector,
+        HasCollidables,
+        HasKeyboardHandlerComponents {
   late Background background = Background();
   late Match match;
   Counter counter = Counter(0);

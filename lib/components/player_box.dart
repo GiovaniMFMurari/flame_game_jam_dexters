@@ -34,6 +34,7 @@ class PlayerBox extends PositionComponent with HasGameRef<MyGame> {
     box = Rect.fromLTWH(
         ((gameSize.x / 2) - (boxWidth / 2)), 0, boxWidth, gameSize.y);
 
+    player.initialX = width / 2;
     player.x = width / 2;
     player.y = gameSize.y - height / 5;
 
