@@ -2,7 +2,7 @@ name: Gh-Pages
 
 on:
   push:
-    branches: [ master, add-post-with-gh-pages ]
+    branches: [ master ]
 
 jobs:
   build:
