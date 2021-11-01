@@ -13,7 +13,6 @@ jobs:
       - uses: subosito/flutter-action@v1
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
-          baseHref: /flame_game_jam_dexters/
           webRenderer: canvaskit
-          workingDir: /
+          baseHref: /flame_game_jam_dexters/
 

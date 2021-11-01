@@ -38,5 +38,7 @@ Your controls are <kbd>A</kbd> and <kbd>D</kbd> to move your character left and 
 
 Treats are worth 1pt each, while Tricks are -3pt. Be prepared! You'll have 45 seconds to catch 'em all!
 
+🎮 [Play with the game here](https://giovanimfmurari.github.io/flame_game_jam_dexters/) 🎮 
+
 ## Jam details
 Our theme is Halloween and the chosen limitation is "Be ridiculously happy and colorful".
